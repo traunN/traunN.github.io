@@ -34,19 +34,25 @@
 */
 
 // Define base and accent colors
-$base-color: #3498db;
+$base-color: #1a1a1a;
 $base-color-hover: darken($base-color, 10%);
 
+// #e60000
+
 // Define background colors
-$background: #fff;
-$background-alt: #f2f2f5;
+$background: #1a1a1a;
+$background-alt: darken($background, 10%);
 
 // Define border colors
-$border: #dcd9d9;
+$border: darken($base-color, 50%);
 
-// Define text colors
-$heading: #374054;
-$text: #74808a;
+// Define text colors7
+$heading:  #fff;
+$heading_dark: #000;
+$heading_red: #e60000;
+$text:  #fff;
+$text_dark: #000;
+$text_red: #e60000;
 
 /*
     ---------------------
@@ -114,7 +120,7 @@ body {
             h4 {
                 font-size: 1.2em;
                 font-weight: 300;
-                color: #7e8890;
+                color: #090909;
                 margin: 0 0 15px 0;
             }
 
@@ -168,7 +174,7 @@ header {
 
     a {
         display: block;
-        color: $base-color;
+        color: $heading;
         padding: 10px;
 
         &:hover {
@@ -244,7 +250,7 @@ footer {
 
     p {
         margin: 0;
-        color: $text;
+        color: $text_dark;
     }
 }
 
@@ -283,7 +289,7 @@ footer {
 
     a {
         display: block;
-        color: $text;
+        color: $text_dark;
         padding: 10px;
 
         &:hover {
@@ -335,6 +341,14 @@ footer {
     }
 }
 
+h2.heading-dark {
+	color: $heading_dark;
+}
+
+h2.heading-red {
+	color: $heading_red;
+}
+
 .background-alt {
     background: $background-alt;
 }
@@ -378,11 +392,18 @@ footer {
     }
 
     h2 {
-        color: lighten($base-color, 25%);
+        color: lighten($heading_red, 25%);
         font-weight: 500;
         font-size: 2.25em;
         margin-bottom: 15px;
     }
+
+	h2-dark{
+		color: $heading_dark;
+		font-weight: 500;
+        font-size: 2.25em;
+        margin-bottom: 15px;
+	}
 }
 
 #lead-overlay {
@@ -457,6 +478,11 @@ footer {
         color: $text;
         margin: 0;
     }
+
+	p-dark{
+		color: lighten($base-color, 25%);
+		margin: 0;
+	}
 }
 
 /*
@@ -465,10 +491,19 @@ footer {
     --------------------------------
 */
 
+.date {
+    color: $heading;
+}
+
+.red-element {
+    color: $heading_red;
+}
+
 #experience {
     padding: 50px 15px;
     text-align: center;
     border-bottom: 1px solid $border;
+	background : $background;
 
     h2 {
         color: $heading;
@@ -515,8 +550,8 @@ footer {
 
     h3 {
         font-size: 1.5em;
-        font-weight: 300;
-        color: $heading;
+        font-weight: 400;
+        color: darken($text_red, 10%);
         display: inline-block;
         margin: 0;
     }
@@ -524,12 +559,12 @@ footer {
     h4 {
         font-size: 1.2em;
         font-weight: 300;
-        color: #7e8890;
+        color: $heading_dark;
         margin: 0 0 15px 0;
     }
 
     p {
-        color: $text;
+        color: lighten($text_dark, 15%);
         font-size: 0.9em;
         margin: 0;
     }
@@ -544,7 +579,7 @@ footer {
 
 .vtimeline-icon {
     position: relative;
-    color: #fff;
+    color: $heading;
     width: 50px;
     height: 50px;
     background: $base-color;
@@ -552,6 +587,7 @@ footer {
     float: left;
     z-index: 99;
     margin-left: 280px;
+	top: 5px;
 
     i {
         display: block;
@@ -565,9 +601,9 @@ footer {
     text-align: right;
     position: absolute;
     left: 0;
-    top: 10px;
+    top: 22px;
     font-weight: 300;
-    color: #374054;
+    color: $heading;
 }
 
 /*
@@ -582,7 +618,7 @@ footer {
     text-align: center;
 
     h2 {
-        color: $heading;
+        color: $heading_dark;
         margin-bottom: 50px;
     }
 }
@@ -592,13 +628,14 @@ footer {
     margin: 0 auto 30px auto;
     padding: 15px;
     border: 1px solid $border;
+	background : $background;
     text-align: left;
 
     h3 {
         font-weight: 500;
         float: left;
         margin: 0;
-        color: $heading;
+        color: lighten($heading_red, 25%);
     }
 
     span {
@@ -642,36 +679,83 @@ footer {
 }
 
 .project {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	align-items: stretch;
+	flex: 1;
     position: relative;
-    max-width: 900px;
     margin: 0 auto 30px auto;
     overflow: hidden;
     background: #fff;
     border-radius: 4px;
+	width: 1100px;
+	height: 400px;
 }
 
 .project-image {
-    float: left;
+	flex: 0 0 auto; /* Adjust the flex-basis to allocate space for the image */
+	width: 720px;
+	height: 400px;
+	float: left;
+	transition: transform 0.3s ease-in-out; /* This will animate the transform property */
 }
 
+.project-image img:hover {
+	transform: scale(1.05);
+	transition: transform 0.3s ease-in-out;
+}
+
+.project-image img:not(:hover) {
+	transition: transform 0.3s ease-in-out;
+}
+
+.project-image .btn {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	background-color: #555;
+	color: white;
+	font-size: 16px;
+	padding: 12px 24px;
+	border: none;
+	cursor: pointer;
+	border-radius: 5px;
+	text-decoration: none; /* Remove underline from the link */
+}
+
+.project-image img {
+    max-width: 100%;
+    height: auto;
+	display: block;
+	align-items: left;
+}
+
+
 .project-info {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    margin-left: 300px;
+	flex: 1; /* Adjust the flex-basis to allocate space for the text */
+	overflow: auto;
+    position: relative; /* Changed from absolute to relative */
+    margin-left: 15px; /* Adjust margin-left to prevent overlap */
     padding: 15px;
+    max-height: 400px; /* Adjust max-width to prevent overlap */
+	max-width: 400px;
+    box-sizing: border-box;
+	text-align: left;
 
     h3 {
         font-size: 1.5em;
-        font-weight: 300;
-        color: $heading;
+        font-weight: 500;
+        color: darken($heading_red, 5%);
         margin: 0 0 15px 0;
     }
 
     p {
-        color: $text;
+        color: $text_dark;
         margin: 0 0 15px 0;
         font-size: 0.9em;
+		word-wrap: break-word;
     }
 }
 
@@ -686,6 +770,12 @@ footer {
 
 #more-projects {
     display: none;
+}
+
+@media (max-width: 600px) {
+    .project {
+        flex-direction: column; /* Stack image and text on top of each other on small screens */
+    }
 }
 
 /*
@@ -860,6 +950,15 @@ footer {
         margin-left: 70px;
     }
 
+	.vtimeline-datelight {
+        width: auto;
+        text-align: left;
+        position: relative;
+        margin-bottom: 15px;
+        display: block;
+        margin-left: 70px;
+    }
+
     .vtimeline-icon {
         margin-left: 0;
     }
@@ -892,6 +991,7 @@ footer {
 
         h2 {
             font-size: 1.75em;
+			color: lighten($heading_red, 25%);
         }
     }
 
@@ -941,6 +1041,7 @@ footer {
 
         h2 {
             font-size: 1.3em;
+			color: lighten($heading_red, 25%);
         }
 
         a {
