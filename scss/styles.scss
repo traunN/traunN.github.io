@@ -790,10 +790,15 @@ h2.heading-red {
 #skills {
     padding: 50px 15px;
     text-align: center;
+    border-top: none;
 
     h2 {
         color: $heading;
         margin-bottom: 50px;
+
+        &:after {
+            display: none !important;
+        }
     }
 
     ul {
