@@ -66,7 +66,7 @@
 		<div class="container">
 			<div class="row">
 				<div class="col-md-4">
-					<h2-dark class="heading heading-dark">About Me</h2>
+					<h2-dark class="heading heading-dark">About Me</h2-dark>
 				</div>
 				<div class="col-md-8">
 					<p-dark>
@@ -123,36 +123,9 @@
 			<div class="row">
 				<div class="project shadow-large">
 					<div class="project-image">
-						<div class="project-carousel">
-							<!-- Main carousel container -->
-							<div class="carousel-container">
-								<!-- Images with navigation arrows -->
-								<div class="carousel-slides">
-									<div class="slide active">
-										<a href="https://store.steampowered.com/app/1638660/Blood_Spear/" target="_blank">
-											<img src="images/blood-spear-visuel-01.jpg" alt="Blood Spear Screenshot 1">
-										</a>
-									</div>
-									<div class="slide">
-										<img src="images/blood-spear-visuel-01.jpg" alt="Blood Spear Screenshot 2">
-									</div>
-									<div class="slide">
-										<img src="images/4HzApH.png" alt="Blood Spear Screenshot 3">
-									</div>
-								</div>
-
-								<!-- Navigation arrows -->
-								<button class="carousel-prev">&lt;</button>
-								<button class="carousel-next">&gt;</button>
-
-								<!-- Indicator dots -->
-								<div class="carousel-indicators">
-									<span class="indicator active"></span>
-									<span class="indicator"></span>
-									<span class="indicator"></span>
-								</div>
-							</div>
-						</div>
+						<a href="https://store.steampowered.com/app/1638660/Blood_Spear/" target="_blank">
+							<img src="images/blood-spear-visuel-01" />
+						</a>
 					</div>
 					<!-- End .project-image -->
 					<div class="project-info">
@@ -772,11 +745,10 @@
 					});
 				});
 
-				// Optional: Auto-advance every 5 seconds
-				// setInterval(() => {
-				//     currentIndex = (currentIndex + 1) % totalSlides;
-				//     updateCarousel();
-				// }, 5000);
+				 setInterval(() => {
+				     currentIndex = (currentIndex + 1) % totalSlides;
+				     updateCarousel();
+				 }, 5000);
 			});
 		});
 	</script>
