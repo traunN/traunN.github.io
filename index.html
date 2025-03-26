@@ -123,9 +123,36 @@
 			<div class="row">
 				<div class="project shadow-large">
 					<div class="project-image">
-						<a href="https://store.steampowered.com/app/1638660/Blood_Spear/" target="_blank">
-							<img src="images/blood-spear-visuel-01.jpg" />
-						</a>
+						<div class="project-carousel">
+							<!-- Main carousel container -->
+							<div class="carousel-container">
+								<!-- Images with navigation arrows -->
+								<div class="carousel-slides">
+									<div class="slide active">
+										<a href="https://store.steampowered.com/app/1638660/Blood_Spear/" target="_blank">
+											<img src="images/blood-spear-visuel-01.jpg" alt="Blood Spear Screenshot 1">
+										</a>
+									</div>
+									<div class="slide">
+										<img src="images/blood-spear-visuel-01.jpg" alt="Blood Spear Screenshot 2">
+									</div>
+									<div class="slide">
+										<img src="images/4HzApH.png" alt="Blood Spear Screenshot 3">
+									</div>
+								</div>
+
+								<!-- Navigation arrows -->
+								<button class="carousel-prev">&lt;</button>
+								<button class="carousel-next">&gt;</button>
+
+								<!-- Indicator dots -->
+								<div class="carousel-indicators">
+									<span class="indicator active"></span>
+									<span class="indicator"></span>
+									<span class="indicator"></span>
+								</div>
+							</div>
+						</div>
 					</div>
 					<!-- End .project-image -->
 					<div class="project-info">
@@ -704,6 +731,55 @@
 
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 	<script src="js/scripts.min.js"></script>
+	<script>
+		document.addEventListener('DOMContentLoaded', function () {
+			// Initialize all carousels
+			document.querySelectorAll('.carousel-container').forEach(carousel => {
+				const slides = carousel.querySelector('.carousel-slides');
+				const prevBtn = carousel.querySelector('.carousel-prev');
+				const nextBtn = carousel.querySelector('.carousel-next');
+				const indicators = carousel.querySelectorAll('.indicator');
+				let currentIndex = 0;
+				const totalSlides = carousel.querySelectorAll('.slide').length;
+
+				// Update carousel position
+				function updateCarousel() {
+					slides.style.transform = `translateX(-${currentIndex * 100}%)`;
+
+					// Update indicators
+					indicators.forEach((indicator, index) => {
+						indicator.classList.toggle('active', index === currentIndex);
+					});
+				}
+
+				// Next button click
+				nextBtn.addEventListener('click', () => {
+					currentIndex = (currentIndex + 1) % totalSlides;
+					updateCarousel();
+				});
+
+				// Previous button click
+				prevBtn.addEventListener('click', () => {
+					currentIndex = (currentIndex - 1 + totalSlides) % totalSlides;
+					updateCarousel();
+				});
+
+				// Indicator clicks
+				indicators.forEach((indicator, index) => {
+					indicator.addEventListener('click', () => {
+						currentIndex = index;
+						updateCarousel();
+					});
+				});
+
+				// Optional: Auto-advance every 5 seconds
+				// setInterval(() => {
+				//     currentIndex = (currentIndex + 1) % totalSlides;
+				//     updateCarousel();
+				// }, 5000);
+			});
+		});
+	</script>
 </body>
 
 </html>
